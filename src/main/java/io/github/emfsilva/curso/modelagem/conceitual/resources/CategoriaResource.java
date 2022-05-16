@@ -28,7 +28,7 @@ public class CategoriaResource {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoriaDTO> listar(@PathVariable Integer id) {
+    public ResponseEntity<CategoriaDTO> findById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(mapper.map(service.buscar(id), CategoriaDTO.class));
     }
 }
