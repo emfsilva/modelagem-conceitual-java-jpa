@@ -1,5 +1,6 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Categoria implements Serializable {
     @Column(name = "nome")
     private String nome;
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 
