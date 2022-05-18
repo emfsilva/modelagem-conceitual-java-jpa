@@ -1,5 +1,6 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.github.emfsilva.curso.modelagem.conceitual.model.enums.TipoCliente;
 import lombok.*;
 
@@ -29,6 +30,7 @@ public class Cliente implements Serializable {
     @Setter(AccessLevel.NONE)
     private Integer tipo;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 
