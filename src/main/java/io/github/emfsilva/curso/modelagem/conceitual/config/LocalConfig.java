@@ -1,13 +1,8 @@
 package io.github.emfsilva.curso.modelagem.conceitual.config;
 
-import io.github.emfsilva.curso.modelagem.conceitual.model.Categoria;
-import io.github.emfsilva.curso.modelagem.conceitual.model.Cidade;
-import io.github.emfsilva.curso.modelagem.conceitual.model.Estado;
-import io.github.emfsilva.curso.modelagem.conceitual.model.Produto;
-import io.github.emfsilva.curso.modelagem.conceitual.repositories.CategoriaRepository;
-import io.github.emfsilva.curso.modelagem.conceitual.repositories.CidadeRepository;
-import io.github.emfsilva.curso.modelagem.conceitual.repositories.EstadoRepository;
-import io.github.emfsilva.curso.modelagem.conceitual.repositories.ProdutoRepository;
+import io.github.emfsilva.curso.modelagem.conceitual.model.*;
+import io.github.emfsilva.curso.modelagem.conceitual.model.enums.TipoCliente;
+import io.github.emfsilva.curso.modelagem.conceitual.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,17 +20,25 @@ public class LocalConfig {
     private  final CidadeRepository cidadeRepository;
     private final EstadoRepository estadoRepository;
 
+    private final ClienteRepository clienteRepository;
+    private final EnderecoRepository enderecoRepository;
+
     @Autowired
     public LocalConfig(CategoriaRepository categoriaRepository, ProdutoRepository produtoRepository,
-                       CidadeRepository cidadeRepository, EstadoRepository estadoRepository) {
+                       CidadeRepository cidadeRepository, EstadoRepository estadoRepository,
+                       ClienteRepository clienteRepository, EnderecoRepository enderecoRepository) {
         this.categoriaRepository = categoriaRepository;
         this.produtoRepository = produtoRepository;
         this.cidadeRepository = cidadeRepository;
         this.estadoRepository = estadoRepository;
+        this.clienteRepository = clienteRepository;
+        this.enderecoRepository = enderecoRepository;
     }
 
     @Bean
     public void startDB() {
+
+        //CATEGORIA - PRODUTO
         Categoria cat1 = new Categoria(null, "Informarica");
         Categoria cat2 = new Categoria(null, "Escritorio");
 
@@ -53,6 +56,8 @@ public class LocalConfig {
         categoriaRepository.saveAll(List.of(cat1,cat2));
         produtoRepository.saveAll(List.of(p1, p2, p3));
 
+        // ESTADO - CIDADE
+
         Estado est1 = new Estado(null, "Minas Gerais");
         Estado est2 = new Estado(null, "São Paulo");
 
@@ -65,6 +70,18 @@ public class LocalConfig {
 
         estadoRepository.saveAll(List.of(est1, est2));
         cidadeRepository.saveAll(List.of(c1, c2, c3));
+
+        // CLIENTE - TELEFONE - ENDEREÇO
+
+        Cliente cli1 = new Cliente(null, "Maria Silva", "maria@gmail.com", "36378912377", TipoCliente.PESSOAFISICA);
+        cli1.getTelefones().addAll(Arrays.asList("27363323", "93838383"));
+        Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303","Jardim", "38220834",cli1, c1);
+        Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800","Centro", "38777012",cli1, c2);
+
+        cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+
+        clienteRepository.saveAll(List.of(cli1));
+        enderecoRepository.saveAll(List.of(e1, e2));
 
     }
 }
