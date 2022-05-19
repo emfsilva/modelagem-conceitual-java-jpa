@@ -1,6 +1,7 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.github.emfsilva.curso.modelagem.conceitual.model.enums.TipoCliente;
 import io.github.emfsilva.curso.modelagem.conceitual.model.endereco.Endereco;
@@ -33,7 +34,6 @@ public class Cliente implements Serializable {
     @Setter(AccessLevel.NONE)
     private Integer tipo;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 
@@ -41,7 +41,7 @@ public class Cliente implements Serializable {
     @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 

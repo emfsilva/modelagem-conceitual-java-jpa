@@ -1,6 +1,7 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model.endereco;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.emfsilva.curso.modelagem.conceitual.model.Cliente;
 import lombok.*;
 
@@ -27,7 +28,7 @@ public class Endereco implements Serializable {
     private String bairro;
     private String cep;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
