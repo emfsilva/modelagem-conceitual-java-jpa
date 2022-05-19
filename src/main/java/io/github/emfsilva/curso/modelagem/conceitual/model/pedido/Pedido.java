@@ -1,9 +1,8 @@
-package io.github.emfsilva.curso.modelagem.conceitual.model.produto;
+package io.github.emfsilva.curso.modelagem.conceitual.model.pedido;
 
 import io.github.emfsilva.curso.modelagem.conceitual.model.Cliente;
 import io.github.emfsilva.curso.modelagem.conceitual.model.endereco.Endereco;
 import io.github.emfsilva.curso.modelagem.conceitual.model.pagamento.Pagamento;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +10,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -36,6 +37,9 @@ public class Pedido implements Serializable {
     @ManyToOne
     @JoinColumn(name = "endereco_entrega_id")
     private Endereco enderecoDeEntrega;
+
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<ItemPedido> itens = new HashSet<>();
 
     public Pedido(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
         this.id = id;

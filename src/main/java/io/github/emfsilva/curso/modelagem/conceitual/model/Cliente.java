@@ -3,7 +3,7 @@ package io.github.emfsilva.curso.modelagem.conceitual.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.github.emfsilva.curso.modelagem.conceitual.model.enums.TipoCliente;
 import io.github.emfsilva.curso.modelagem.conceitual.model.endereco.Endereco;
-import io.github.emfsilva.curso.modelagem.conceitual.model.produto.Pedido;
+import io.github.emfsilva.curso.modelagem.conceitual.model.pedido.Pedido;
 import lombok.*;
 
 import javax.persistence.*;

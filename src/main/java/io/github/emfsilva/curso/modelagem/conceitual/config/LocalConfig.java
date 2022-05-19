@@ -9,8 +9,9 @@ import io.github.emfsilva.curso.modelagem.conceitual.model.endereco.Estado;
 import io.github.emfsilva.curso.modelagem.conceitual.model.pagamento.Pagamento;
 import io.github.emfsilva.curso.modelagem.conceitual.model.pagamento.PagamentoComBoleto;
 import io.github.emfsilva.curso.modelagem.conceitual.model.pagamento.PagamentoComCartao;
+import io.github.emfsilva.curso.modelagem.conceitual.model.pedido.ItemPedido;
 import io.github.emfsilva.curso.modelagem.conceitual.model.produto.Categoria;
-import io.github.emfsilva.curso.modelagem.conceitual.model.produto.Pedido;
+import io.github.emfsilva.curso.modelagem.conceitual.model.pedido.Pedido;
 import io.github.emfsilva.curso.modelagem.conceitual.model.produto.Produto;
 import io.github.emfsilva.curso.modelagem.conceitual.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +38,14 @@ public class LocalConfig {
 
     private final PedidoRepository pedidoRepository;
     private final PagamentoRepository pagamentoRepository;
+    private final ItemPedidoRepository itemPedidoRepository;
 
     @Autowired
     public LocalConfig(CategoriaRepository categoriaRepository, ProdutoRepository produtoRepository,
                        CidadeRepository cidadeRepository, EstadoRepository estadoRepository,
                        ClienteRepository clienteRepository, EnderecoRepository enderecoRepository,
-                       PedidoRepository pedidoRepository, PagamentoRepository pagamentoRepository) {
+                       PedidoRepository pedidoRepository, PagamentoRepository pagamentoRepository,
+                       ItemPedidoRepository itemPedidoRepository) {
         this.categoriaRepository = categoriaRepository;
         this.produtoRepository = produtoRepository;
         this.cidadeRepository = cidadeRepository;
@@ -51,6 +54,7 @@ public class LocalConfig {
         this.enderecoRepository = enderecoRepository;
         this.pedidoRepository = pedidoRepository;
         this.pagamentoRepository = pagamentoRepository;
+        this.itemPedidoRepository = itemPedidoRepository;
     }
 
     @Bean
@@ -116,5 +120,20 @@ public class LocalConfig {
 
         pedidoRepository.saveAll(List.of(ped1, ped2));
         pagamentoRepository.saveAll(List.of(pgto1, pgto2));
+
+        // ITEM_PEDIDO
+
+        ItemPedido ip1 = new ItemPedido(ped1, p1, new BigDecimal(0.0), 1, new BigDecimal(2000.00));
+        ItemPedido ip2 = new ItemPedido(ped1, p3, new BigDecimal(0.0), 2, new BigDecimal(80.00));
+        ItemPedido ip3 = new ItemPedido(ped2, p2, new BigDecimal(100.00), 1, new BigDecimal(800.00));
+
+        ped1.getItens().addAll(Arrays.asList(ip1, ip2));
+        ped2.getItens().addAll(Arrays.asList(ip3));
+
+        p1.getItens().addAll(Arrays.asList(ip1));
+        p2.getItens().addAll(Arrays.asList(ip3));
+        p3.getItens().addAll(Arrays.asList(ip2));
+
+        itemPedidoRepository.saveAll(List.of(ip1, ip2, ip3));
     }
 }

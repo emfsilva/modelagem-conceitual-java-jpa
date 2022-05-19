@@ -1,6 +1,8 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model.produto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.github.emfsilva.curso.modelagem.conceitual.model.pedido.ItemPedido;
+import io.github.emfsilva.curso.modelagem.conceitual.model.pedido.Pedido;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,14 +11,11 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 @Table(name = "produto")
 @Entity
 public class Produto implements Serializable {
@@ -36,11 +35,23 @@ public class Produto implements Serializable {
     )
     private List<Categoria> categorias = new ArrayList<>();
 
+    @OneToMany(mappedBy = "id.produto")
+    private Set<ItemPedido> itens = new HashSet<>();
+
     public Produto(Integer id, String nome, BigDecimal preço) {
         this.id = id;
         this.nome = nome;
         this.preço = preço;
     }
+
+    public List<Pedido> getPedidos() {
+       List<Pedido> lista = new ArrayList<>();
+        for (ItemPedido x: itens) {
+            lista.add(x.getPedido());
+        }
+        return lista;
+
+     }
 
     @Override
     public boolean equals(Object o) {

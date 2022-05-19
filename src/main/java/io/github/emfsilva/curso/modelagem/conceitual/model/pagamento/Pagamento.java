@@ -1,7 +1,7 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model.pagamento;
 
 import io.github.emfsilva.curso.modelagem.conceitual.model.enums.EstadoPagamento;
-import io.github.emfsilva.curso.modelagem.conceitual.model.produto.Pedido;
+import io.github.emfsilva.curso.modelagem.conceitual.model.pedido.Pedido;
 import lombok.*;
 
 import javax.persistence.*;
