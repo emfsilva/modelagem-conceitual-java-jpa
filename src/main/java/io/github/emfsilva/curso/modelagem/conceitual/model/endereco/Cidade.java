@@ -13,7 +13,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
-@Table(name = "cidade")
+@Table(name = "CIDADE")
 public class Cidade implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -23,7 +23,7 @@ public class Cidade implements Serializable {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "estado_id")
+    @JoinColumn(name = "ESTADO_ID")
     private Estado estado;
 
     @Override

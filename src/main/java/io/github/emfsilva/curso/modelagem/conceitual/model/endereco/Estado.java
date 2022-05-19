@@ -18,7 +18,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
-@Table(name = "estado")
+@Table(name = "ESTADO")
 public class Estado implements Serializable {
     private static final long serialVersionUID = 1L;
 

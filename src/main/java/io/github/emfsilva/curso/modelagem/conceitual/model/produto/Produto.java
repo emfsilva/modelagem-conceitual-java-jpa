@@ -18,7 +18,7 @@ import java.util.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "produto")
+@Table(name = "PRODUTO")
 @Entity
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -31,7 +31,7 @@ public class Produto implements Serializable {
 
     @JsonIgnore
     @ManyToMany
-    @JoinTable(name = "PRODUTO_CATEGORIA",
+    @JoinTable(name = "produto_categoria",
             joinColumns = @JoinColumn(name = "produto_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_id")
     )

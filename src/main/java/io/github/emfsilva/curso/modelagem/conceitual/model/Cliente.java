@@ -19,7 +19,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "cliente")
+@Table(name = "CLIENTE")
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -28,8 +28,8 @@ public class Cliente implements Serializable {
     private Integer id;
     private String nome;
     private String email;
-    @Column(name = "cpf_cnpj")
-    private String cpfCpnj;
+    @Column(name = "CPF_CNPJ")
+    private String cpfCnpj;
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private Integer tipo;
@@ -45,11 +45,11 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
-    public Cliente(Integer id, String nome, String email, String cpfCpnj, TipoCliente tipoCliente) {
+    public Cliente(Integer id, String nome, String email, String cpfCnpj, TipoCliente tipoCliente) {
         this.id = id;
         this.nome = nome;
         this.email = email;
-        this.cpfCpnj = cpfCpnj;
+        this.cpfCnpj = cpfCnpj;
         this.tipo = tipoCliente.getCod();
     }
 

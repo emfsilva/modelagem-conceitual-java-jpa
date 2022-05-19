@@ -14,7 +14,7 @@ public class ClienteDTO {
     private Integer id;
     private String nome;
     private String email;
-    private String cpfCpnj;
+    private String cpfCnpj;
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private Integer tipo;

@@ -14,14 +14,14 @@ import java.util.Objects;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "categoria")
+@Table(name = "CATEGORIA")
 public class Categoria implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "nome")
+    @Column(name = "NOME")
     private String nome;
 
     @ManyToMany(mappedBy = "categorias")
