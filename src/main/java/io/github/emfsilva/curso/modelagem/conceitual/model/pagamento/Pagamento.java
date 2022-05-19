@@ -1,5 +1,6 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model.pagamento;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.github.emfsilva.curso.modelagem.conceitual.model.enums.EstadoPagamento;
 import io.github.emfsilva.curso.modelagem.conceitual.model.pedido.Pedido;
 import lombok.*;
@@ -23,6 +24,7 @@ public abstract class Pagamento implements Serializable {
     @Column(name = "ESTADO_PAGAMENTO")
     private Integer estadoPagamento;
 
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name = "PEDIDO_ID")
     @MapsId

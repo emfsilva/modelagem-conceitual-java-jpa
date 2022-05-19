@@ -22,6 +22,7 @@ import org.springframework.context.annotation.Profile;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,8 +42,8 @@ public class LocalConfig {
     private final ItemPedidoRepository itemPedidoRepository;
 
     @Autowired
-    public LocalConfig(CategoriaRepository categoriaRepository, ProdutoRepository produtoRepository,
-                       CidadeRepository cidadeRepository, EstadoRepository estadoRepository,
+    public LocalConfig(CategoriaRepository categoriaRepository, PedidoRepository pedoidoRepository,
+                       ProdutoRepository produtoRepository, CidadeRepository cidadeRepository, EstadoRepository estadoRepository,
                        ClienteRepository clienteRepository, EnderecoRepository enderecoRepository,
                        PedidoRepository pedidoRepository, PagamentoRepository pagamentoRepository,
                        ItemPedidoRepository itemPedidoRepository) {
@@ -107,13 +108,13 @@ public class LocalConfig {
 
         // PEDIDO - PAGAMENTO
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy hh:mm");
-        Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
-        Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32:00"), cli1, e1);
+        Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35:00"), cli1, e2);
 
         Pagamento pgto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
         ped1.setPagamento(pgto1);
-        Pagamento pgto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
+        Pagamento pgto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00:00"), null);
         ped2.setPagamento(pgto2);
 
         cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));

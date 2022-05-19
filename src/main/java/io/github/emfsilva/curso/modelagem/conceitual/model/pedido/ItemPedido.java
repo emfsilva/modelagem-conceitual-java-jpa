@@ -1,5 +1,6 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model.pedido;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.github.emfsilva.curso.modelagem.conceitual.model.produto.Produto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.Objects;
 public class ItemPedido implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     @EmbeddedId
     private ItemPedidoPK id = new ItemPedidoPK();
     private BigDecimal desconto;
@@ -32,9 +34,11 @@ public class ItemPedido implements Serializable {
         this.preco = preco;
     }
 
+    @JsonIgnore
     public Pedido getPedido() {
         return id.getPedido();
     }
+
 
     public Produto getProduto() {
         return id.getProduto();

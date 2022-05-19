@@ -1,17 +1,15 @@
-package io.github.emfsilva.curso.modelagem.conceitual.model.pedido;
+package io.github.emfsilva.curso.modelagem.conceitual.model.dtos;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.github.emfsilva.curso.modelagem.conceitual.model.Cliente;
 import io.github.emfsilva.curso.modelagem.conceitual.model.endereco.Endereco;
 import io.github.emfsilva.curso.modelagem.conceitual.model.pagamento.Pagamento;
+import io.github.emfsilva.curso.modelagem.conceitual.model.pedido.ItemPedido;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -20,34 +18,16 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
-@Table(name = "PEDIDO")
-public class Pedido implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class PedidoDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date instante;
-
-    @JsonManagedReference
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
     private Pagamento pagamento;
-
-    @JsonManagedReference
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-    @ManyToOne
-    @JoinColumn(name = "endereco_entrega_id")
     private Endereco enderecoDeEntrega;
-
-    @OneToMany(mappedBy = "id.pedido")
     private Set<ItemPedido> itens = new HashSet<>();
 
-    public Pedido(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
+    public PedidoDTO(Integer id, Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
         this.id = id;
         this.instante = instante;
         this.cliente = cliente;
@@ -58,8 +38,8 @@ public class Pedido implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Pedido pedido = (Pedido) o;
-        return Objects.equals(id, pedido.id);
+        PedidoDTO pedidoDTO = (PedidoDTO) o;
+        return Objects.equals(id, pedidoDTO.id);
     }
 
     @Override

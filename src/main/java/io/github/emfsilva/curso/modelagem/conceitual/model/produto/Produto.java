@@ -1,6 +1,8 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model.produto;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.github.emfsilva.curso.modelagem.conceitual.model.pedido.ItemPedido;
 import io.github.emfsilva.curso.modelagem.conceitual.model.pedido.Pedido;
 import lombok.Getter;
@@ -35,6 +37,7 @@ public class Produto implements Serializable {
     )
     private List<Categoria> categorias = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
 
@@ -44,6 +47,7 @@ public class Produto implements Serializable {
         this.preço = preço;
     }
 
+    @JsonIgnore
     public List<Pedido> getPedidos() {
        List<Pedido> lista = new ArrayList<>();
         for (ItemPedido x: itens) {
