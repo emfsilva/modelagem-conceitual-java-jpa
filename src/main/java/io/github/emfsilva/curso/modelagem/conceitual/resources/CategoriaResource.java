@@ -1,6 +1,5 @@
 package io.github.emfsilva.curso.modelagem.conceitual.resources;
 
-import io.github.emfsilva.curso.modelagem.conceitual.model.Categoria;
 import io.github.emfsilva.curso.modelagem.conceitual.model.dtos.CategoriaDTO;
 import io.github.emfsilva.curso.modelagem.conceitual.services.CategoriaService;
 import org.modelmapper.ModelMapper;
@@ -10,9 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/categorias")

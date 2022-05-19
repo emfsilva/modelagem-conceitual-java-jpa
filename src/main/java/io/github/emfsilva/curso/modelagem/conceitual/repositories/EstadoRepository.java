@@ -1,7 +1,6 @@
 package io.github.emfsilva.curso.modelagem.conceitual.repositories;
 
-import io.github.emfsilva.curso.modelagem.conceitual.model.Cidade;
-import io.github.emfsilva.curso.modelagem.conceitual.model.Estado;
+import io.github.emfsilva.curso.modelagem.conceitual.model.endereco.Estado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

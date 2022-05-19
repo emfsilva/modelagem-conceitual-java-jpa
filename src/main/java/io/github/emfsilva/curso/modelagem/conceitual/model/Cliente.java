@@ -2,6 +2,8 @@ package io.github.emfsilva.curso.modelagem.conceitual.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.github.emfsilva.curso.modelagem.conceitual.model.enums.TipoCliente;
+import io.github.emfsilva.curso.modelagem.conceitual.model.endereco.Endereco;
+import io.github.emfsilva.curso.modelagem.conceitual.model.produto.Pedido;
 import lombok.*;
 
 import javax.persistence.*;
@@ -37,6 +39,9 @@ public class Cliente implements Serializable {
     @ElementCollection
     @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente(Integer id, String nome, String email, String cpfCpnj, TipoCliente tipoCliente) {
         this.id = id;

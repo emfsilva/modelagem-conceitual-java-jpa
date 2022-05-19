@@ -1,5 +1,6 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model.enums;
 
+import io.github.emfsilva.curso.modelagem.conceitual.config.Mensagem;
 import lombok.Getter;
 
 @Getter
@@ -27,6 +28,6 @@ public enum     TipoCliente {
             }
         }
 
-        throw new IllegalArgumentException("Id invalido" + cod);
+        throw new IllegalArgumentException(Mensagem.INVALID_ID + cod);
     }
 }

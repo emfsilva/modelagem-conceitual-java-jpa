@@ -1,6 +1,6 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model.dtos;
 
-import io.github.emfsilva.curso.modelagem.conceitual.model.Produto;
+import io.github.emfsilva.curso.modelagem.conceitual.model.produto.Produto;
 import lombok.*;
 
 import java.io.Serializable;

@@ -1,6 +1,7 @@
-package io.github.emfsilva.curso.modelagem.conceitual.model;
+package io.github.emfsilva.curso.modelagem.conceitual.model.endereco;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import io.github.emfsilva.curso.modelagem.conceitual.model.Cliente;
 import lombok.*;
 
 import javax.persistence.*;

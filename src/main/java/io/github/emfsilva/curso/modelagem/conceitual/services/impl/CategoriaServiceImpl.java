@@ -1,7 +1,7 @@
 package io.github.emfsilva.curso.modelagem.conceitual.services.impl;
 
 import io.github.emfsilva.curso.modelagem.conceitual.config.Mensagem;
-import io.github.emfsilva.curso.modelagem.conceitual.model.Categoria;
+import io.github.emfsilva.curso.modelagem.conceitual.model.produto.Categoria;
 import io.github.emfsilva.curso.modelagem.conceitual.repositories.CategoriaRepository;
 import io.github.emfsilva.curso.modelagem.conceitual.services.CategoriaService;
 import io.github.emfsilva.curso.modelagem.conceitual.services.exceptions.ObjectNotFountException;

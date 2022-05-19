@@ -1,6 +1,6 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model.dtos;
 
-import io.github.emfsilva.curso.modelagem.conceitual.model.Endereco;
+import io.github.emfsilva.curso.modelagem.conceitual.model.endereco.Endereco;
 import io.github.emfsilva.curso.modelagem.conceitual.model.enums.TipoCliente;
 import lombok.*;
 

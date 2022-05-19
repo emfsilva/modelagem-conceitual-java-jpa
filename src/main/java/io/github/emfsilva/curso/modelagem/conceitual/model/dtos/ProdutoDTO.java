@@ -1,7 +1,6 @@
 package io.github.emfsilva.curso.modelagem.conceitual.model.dtos;
 
-import com.sun.source.doctree.SerialDataTree;
-import io.github.emfsilva.curso.modelagem.conceitual.model.Categoria;
+import io.github.emfsilva.curso.modelagem.conceitual.model.produto.Categoria;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
